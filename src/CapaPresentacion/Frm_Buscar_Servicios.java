@@ -4,11 +4,12 @@
  */
 package CapaPresentacion;
 
-import CapaLogica.BLClientes;
+import CapaLogica.BLAuto;
 import CapaLogica.BLEmpleados;
-import Capa_Entidades.EntidadCliente;
+import CapaLogica.BLServicios;
 import Capa_Entidades.EntidadEmpleado;
 import Capa_Entidades.EntidadPersona;
+import Capa_Entidades.Entidad_Servicio;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,13 +18,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fran
  */
-public class Frm_Buscar_Empleado extends javax.swing.JDialog {
-
+public class Frm_Buscar_Servicios extends javax.swing.JDialog {
+        
     /**
-     * Creates new form Frm_Buscar_Empleado
+     * Creates new form Frm_Buscar_Servicios
      */
-
-    
+    public Frm_Buscar_Servicios(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        this.setTitle("Buscar Servicios");
+      
+        this.setLocationRelativeTo(null);
+        try {
+            CargarDatos("");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
+        }
+        
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,16 +47,22 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmpleados = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblServicios = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("ID");
+
+        txtId.setEnabled(false);
+
+        jLabel2.setText("Nombre");
 
         btnBuscar.setBackground(new java.awt.Color(0, 51, 255));
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -54,7 +73,7 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
             }
         });
 
-        tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+        tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,12 +84,12 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblEmpleadosMouseClicked(evt);
+                tblServiciosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblEmpleados);
+        jScrollPane1.setViewportView(tblServicios);
 
         btnCancelar.setBackground(new java.awt.Color(204, 255, 204));
         btnCancelar.setText("Cancelar");
@@ -79,12 +98,6 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("ID");
-
-        txtId.setEnabled(false);
-
-        jLabel2.setText("Nombre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +119,7 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnBuscar))))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,76 +135,58 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public Frm_Buscar_Empleado(java.awt.Frame parent, boolean modal) {
-         super(parent, modal);
-        initComponents();
- 
-        this.setTitle("Buscar Empleados");
-      
-        this.setLocationRelativeTo(null);
-        try {
-            CargarDatos("");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
-        }
-    }
-  DefaultTableModel modelo = new DefaultTableModel() {
-        @Override
-      
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-
-    /**
-     * Creates new form Frm_Buscar_Cliente
-     */
-
-  
- 
-  
-  
-  
-
- 
-
- 
-
-      public int ObtenerId() {
-        int id = -1;
-        if (!txtId.getText().equals("")) {
-            id = Integer.parseInt(txtId.getText());
-        }
-        return id;
-    }
-
+      DefaultTableModel modelo = new DefaultTableModel();
     
    
     
-    
-                             
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        String condicion = "";
+        try {
+            if (!txtNombre.getText().equals("")) {
+                condicion = "NOMBRE LIKE '%" + txtNombre.getText() + "%'";
+            }
+            CargarDatos(condicion);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
+        // TODO add your handling code here:
+        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
+        if (evt.getClickCount() == 2) {
+            int fila = tblServicios.rowAtPoint(evt.getPoint());
+            txtId.setText(tblServicios.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblServicios.getValueAt(fila, 1).toString());
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblServiciosMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
+    
       private void CargarDatos(String condicion) throws Exception {
-        BLEmpleados logica = new BLEmpleados();
-        List<EntidadEmpleado> lista;
+        BLServicios logica = new BLServicios();
+        List<Entidad_Servicio> lista;
         LimpiarTabla();
         Object[] fila = new Object[5];
         try {
-            lista = logica.ListarEmpleados(condicion);
-            for (EntidadPersona cli : lista) {
-                fila[0] = cli.getId();
-                fila[1] = cli.getNombre();
-                fila[2] = cli.getApellido1();
-                fila[3] = cli.getApellido2();
-                fila[4] = cli.getTelefono();
+            lista = logica.ListarServicios(condicion);
+            for (Entidad_Servicio ser:lista) {
+                fila[0]=ser.getId();
+                
                 modelo.addRow(fila);
             }
         } catch (Exception ex) {
@@ -207,13 +202,11 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                 return false;
             }
         };     
-        tblEmpleados.setModel(modelo);
-        modelo.addColumn("Código");
+        tblServicios.setModel(modelo);
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido1");
-        modelo.addColumn("Apellido2");
-        modelo.addColumn("Telefono");
-        
+        modelo.addColumn("Tipo_Vehiculo");
+        modelo.addColumn("Precio");     
     }
     
     
@@ -234,35 +227,14 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
     
     
     
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        String condicion = "";
-        try {
-            if (!txtNombre.getText().equals("")) {
-                condicion = "NOMBRE LIKE '%" + txtNombre.getText() + "%'";
-            }
-            CargarDatos(condicion);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
-        // TODO add your handling code here:
-        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
-        if (evt.getClickCount() == 2) {
-            int fila = tblEmpleados.rowAtPoint(evt.getPoint());
-            txtId.setText(tblEmpleados.getValueAt(fila, 0).toString());
-            txtNombre.setText(tblEmpleados.getValueAt(fila, 1).toString());
-            this.dispose();
-        }
-    }//GEN-LAST:event_tblEmpleadosMouseClicked
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -280,20 +252,20 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Empleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Frm_Buscar_Empleado dialog = new Frm_Buscar_Empleado(new javax.swing.JFrame(), true);
+                Frm_Buscar_Servicios dialog = new Frm_Buscar_Servicios(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -311,7 +283,7 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblEmpleados;
+    private javax.swing.JTable tblServicios;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

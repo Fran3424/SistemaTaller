@@ -29,11 +29,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         Escritorio = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        MnuPrincipal = new javax.swing.JMenuBar();
         MnuAuto = new javax.swing.JMenu();
         MnuCliente = new javax.swing.JMenuItem();
         MnuEmpleado = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MnuAutomovil = new javax.swing.JMenuItem();
         MnuProducto = new javax.swing.JMenuItem();
         MnuReparacion = new javax.swing.JMenuItem();
         MnuPago = new javax.swing.JMenuItem();
@@ -75,10 +75,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuEmpleado);
 
-        jMenuItem1.setText("Automoviles");
-        MnuAuto.add(jMenuItem1);
+        MnuAutomovil.setText("Automoviles");
+        MnuAutomovil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuAutomovilActionPerformed(evt);
+            }
+        });
+        MnuAuto.add(MnuAutomovil);
 
         MnuProducto.setText("CompraProducto");
+        MnuProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuProductoActionPerformed(evt);
+            }
+        });
         MnuAuto.add(MnuProducto);
 
         MnuReparacion.setText("AgendarReparacion");
@@ -90,9 +100,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuFactura.setText("GenerarFactura");
         MnuAuto.add(MnuFactura);
 
-        jMenuBar1.add(MnuAuto);
+        MnuPrincipal.add(MnuAuto);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(MnuPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,6 +148,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Frm_empleados.show();
     }//GEN-LAST:event_MnuEmpleadoActionPerformed
 
+    private void MnuAutomovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuAutomovilActionPerformed
+        Frm_Agrega_Auto Frm_Autos = new Frm_Agrega_Auto();
+        Escritorio.add(Frm_Autos);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Autos.getSize();
+        Frm_Autos.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+                        ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Autos.show(); 
+    }//GEN-LAST:event_MnuAutomovilActionPerformed
+
+    private void MnuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnuProductoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -176,13 +200,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu MnuAuto;
+    private javax.swing.JMenuItem MnuAutomovil;
     private javax.swing.JMenuItem MnuCliente;
     private javax.swing.JMenuItem MnuEmpleado;
     private javax.swing.JMenuItem MnuFactura;
     private javax.swing.JMenuItem MnuPago;
+    private javax.swing.JMenuBar MnuPrincipal;
     private javax.swing.JMenuItem MnuProducto;
     private javax.swing.JMenuItem MnuReparacion;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
