@@ -20,13 +20,13 @@ public class Entidad_Servicio extends Articulos_Servicios {
         this.Tipo_Vehiculo = Tipo_Vehiculo;
     }
 
-    public Entidad_Servicio(String Tipo_Vehiculo, int id, String nombre, int precio, boolean existe) {
-        super(id, nombre, precio, existe);
+    public Entidad_Servicio(String Tipo_Vehiculo, int id, String nombre, int precio) {
+        super(id, nombre, precio);
         this.Tipo_Vehiculo = Tipo_Vehiculo;
     }
 
     public Entidad_Servicio() {
-        super(0, "", 0, false);
+        super(0, "", 0);
         this.Tipo_Vehiculo = "";
     }
 

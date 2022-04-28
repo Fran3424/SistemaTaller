@@ -17,6 +17,15 @@ import java.util.List;
  */
 public class BLServicios {
     
+     private String mensaje;
+    
+    
+     public String getMensaje() {
+        return mensaje;
+    }
+     
+    
+    
       public List<Entidad_Servicio> ListarServicios(String condicion) throws Exception{
         List<Entidad_Servicio> servicios = new ArrayList();
         DAServicios daServicio;
@@ -29,7 +38,29 @@ public class BLServicios {
         return servicios;
     }
     
-    
+      
+      
+      
+      
+      public Entidad_Servicio ObtenerUnServicio(String condicion) throws Exception{
+        Entidad_Servicio servicio;
+        DAServicios daServicios;
+        try {
+            daServicios = new DAServicios();
+            servicio = daServicios.ObtenerUnServicio(condicion);
+            if (servicio.isExiste()) {
+                mensaje = "Cliente encontrado!";
+            }
+            else{
+                mensaje = "Cliente NO encontrado";
+            }
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return servicio;
+    }
+     
+     
     
     
     

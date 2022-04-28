@@ -90,7 +90,7 @@ public class DA_Autos {
             }
         } catch (Exception ex) {
             Component parentComponent = null;
-            JOptionPane.showMessageDialog(parentComponent,"Shir");
+            JOptionPane.showMessageDialog(parentComponent,ex);
         } finally {
             _cnn = null;
         }     

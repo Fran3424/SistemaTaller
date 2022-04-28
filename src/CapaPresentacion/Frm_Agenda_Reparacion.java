@@ -4,6 +4,22 @@
  */
 package CapaPresentacion;
 
+import CapaLogica.BLAuto;
+import CapaLogica.BLClientes;
+import CapaLogica.BLEmpleados;
+import CapaLogica.BLReparaciones;
+import CapaLogica.BLServicios;
+import Capa_Entidades.EntidadAutomovil;
+import Capa_Entidades.EntidadCliente;
+import Capa_Entidades.EntidadEmpleado;
+import Capa_Entidades.EntidadReparaciones;
+import Capa_Entidades.Entidad_Servicio;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author Fran
@@ -37,28 +53,74 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
         btnbuscarauto = new javax.swing.JButton();
         lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        Txttipovehiculo = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        FechaFin = new javax.swing.JLabel();
+        lblMonto = new javax.swing.JLabel();
+        txtMonto = new javax.swing.JTextField();
+        lbltipo = new javax.swing.JLabel();
+        btnAgendar = new javax.swing.JButton();
+        dtchFin = new com.toedter.calendar.JDateChooser();
+        dtchInicio = new com.toedter.calendar.JDateChooser();
 
         lblIDServicio.setText("ID_Servicio");
 
         txtID_Servicio.setEditable(false);
 
         btnbuscarservicio.setText("Buscar Servicio");
+        btnbuscarservicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarservicioActionPerformed(evt);
+            }
+        });
 
         lblIDEmpleado.setText("ID_Empleado");
 
         txtID_Empleado.setEditable(false);
 
         btnbuscarempleado.setText("Buscar Empleado");
+        btnbuscarempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarempleadoActionPerformed(evt);
+            }
+        });
 
         lblID_Auto.setText("ID_Auto");
 
         txtID_Auto.setEditable(false);
 
         btnbuscarauto.setText("Buscar Auto");
+        btnbuscarauto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarautoActionPerformed(evt);
+            }
+        });
 
         lblID.setText("ID");
 
         txtID.setEditable(false);
+
+        jLabel1.setText("Tipo Vehiculo");
+
+        Txttipovehiculo.setEditable(false);
+
+        jLabel2.setText("Fecha Inicio");
+
+        FechaFin.setText("Fecha Fin");
+
+        lblMonto.setText("Monto");
+
+        txtMonto.setEditable(false);
+
+        lbltipo.setText("tipo");
+
+        btnAgendar.setText("Agendar");
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,75 +129,332 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgendar)
+                        .addGap(259, 259, 259)
+                        .addComponent(lbltipo)
+                        .addContainerGap(516, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblID_Auto)
-                                .addGap(54, 54, 54)
-                                .addComponent(txtID_Auto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Txttipovehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIDServicio)
-                                    .addComponent(lblID))
-                                .addGap(38, 38, 38)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblIDServicio)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(txtID_Servicio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblIDEmpleado)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtID_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtID_Servicio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(btnbuscarservicio))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(77, 77, 77)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnbuscarauto)
-                                            .addComponent(btnbuscarempleado))))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblIDEmpleado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(txtID_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(729, 729, 729))))
+                                    .addComponent(btnbuscarservicio)
+                                    .addComponent(btnbuscarempleado)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblID)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblID_Auto)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtID_Auto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnbuscarauto))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblMonto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(dtchInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FechaFin))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDServicio)
-                    .addComponent(txtID_Servicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscarservicio))
-                .addGap(54, 54, 54)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtID_Servicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnbuscarservicio)))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIDEmpleado)
                     .addComponent(txtID_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscarempleado))
-                .addGap(48, 48, 48)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID_Auto)
                     .addComponent(txtID_Auto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscarauto))
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Txttipovehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMonto)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltipo)
+                    .addComponent(btnAgendar))
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(FechaFin))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtchInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(276, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnbuscarservicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarservicioActionPerformed
+          
+        String tipo;
+        tipo=Txttipovehiculo.getText();
+        if(!txtID_Auto.getText().isEmpty()){
+        Frm_Buscar_Servicios buscar = new Frm_Buscar_Servicios(null, true);
+        buscar.Cargar(tipo);
+        buscar.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                try {
+                    int id = buscar.ObtenerId();
+                    String tipo =Txttipovehiculo.getText();
+                    String condicion = "";
+                    BLServicios logica = new BLServicios();
+                    Entidad_Servicio servicio;
+                    if (id > -1) {
+                          condicion = String.format("Id_Servicio=%d", id);
+                        servicio = logica.ObtenerUnServicio(condicion);
+                        txtID_Servicio.setText(String.valueOf(servicio.getId()));
+                        txtMonto.setText(String.valueOf(servicio.getPrecio()));
+                        
+                    }
+                    else{
+                        txtID_Servicio.setText("");
+                        
+                    } 
+                    
+                    
+                    
+                    
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+            
+        });
+        
+        buscar.setVisible(true); 
+        
+        }
+        else{
+         JOptionPane.showMessageDialog(null, "Debes primero elegir un automovil");
+        
+        
+        }
+        
+    
+        
+    }//GEN-LAST:event_btnbuscarservicioActionPerformed
+
+    private void btnbuscarempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarempleadoActionPerformed
+            Frm_Buscar_Empleado buscar = new Frm_Buscar_Empleado(null, true);
+        buscar.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                try {
+                    int id = buscar.ObtenerId();
+                    String condicion = "";
+                    BLEmpleados logica = new BLEmpleados();
+                    EntidadEmpleado empleado;
+                    if (id > -1) {
+                        condicion = String.format("Id_Empleado=%d", id);
+                        empleado = logica.ObtenerUnEmpleado(condicion);
+                        txtID_Empleado.setText(String.valueOf(empleado.getId()));
+                        
+                    }
+                    else{
+                        txtID_Empleado.setText("");
+                        
+                    }                      
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+        buscar.setVisible(true);    
+    }//GEN-LAST:event_btnbuscarempleadoActionPerformed
+
+    private void btnbuscarautoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarautoActionPerformed
+            Frm_Buscar_Auto buscar = new Frm_Buscar_Auto(null, true);
+            buscar.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                try {
+                    int id = buscar.ObtenerId();
+                    String condicion = "";
+                    BLAuto logica = new BLAuto();
+                    EntidadAutomovil auto;
+                    if (id > -1) {
+                        condicion = String.format("Id_Automovil=%d", id);
+                        auto = logica.ObtenerUnAuto(condicion);
+                        txtID_Auto.setText(String.valueOf(auto.getId()));
+                         lbltipo.setText(String.valueOf(auto.getTipo_vehiculo()));
+                         Txttipovehiculo.setText(String.valueOf(auto.getTipo_vehiculo()));
+                    }
+                    else{
+                        txtID_Auto.setText("");
+                        
+                    }                      
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+        buscar.setVisible(true); 
+        
+        
+   
+        
+    }//GEN-LAST:event_btnbuscarautoActionPerformed
+
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+           BLReparaciones logica = new BLReparaciones();
+        EntidadReparaciones reparacion = GenerarEntidad();
+        try {
+            if (reparacion.isExiste()) {
+                //logica.Modificar(reparacion);
+            }
+            else{
+                logica.Insertar(reparacion);
+            }
+         //   Limpiar();
+          //  CargarDatos("");
+            JOptionPane.showMessageDialog(this, logica.getMensaje());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAgendarActionPerformed
+
+    
+    public String getTipoVehiculo(){
+    String tipo_vehiculo=Txttipovehiculo.getText();
+    
+    return tipo_vehiculo;
+    };
+    
+    
+     public void setTipoVehiculo( String tipo){
+    String tipo_vehiculo=tipo;
+    
+    
+    };
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     private EntidadReparaciones GenerarEntidad(){
+        EntidadReparaciones reparacion = new EntidadReparaciones();
+        if (!txtID.getText().equals("")) {
+            reparacion.setExiste(true);
+            reparacion.setId(Integer.parseInt(txtID.getText()));
+        }
+        reparacion.setId_servicio(Integer.parseInt(txtID_Servicio.getText()));
+        reparacion.setId_auto(Integer.parseInt(txtID_Auto.getText()));
+        reparacion.setId_empleado(Integer.parseInt(txtID_Empleado.getText()));
+       reparacion.setFechaInicio(dtchInicio.getDate());
+        reparacion.setFechaFin(dtchFin.getDate());
+        reparacion.setMonto( Integer.parseInt(txtMonto.getText()));
+        return reparacion;
+        
+        
+        
+
+        
+        
+        
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FechaFin;
+    public javax.swing.JTextField Txttipovehiculo;
+    private javax.swing.JButton btnAgendar;
     private javax.swing.JButton btnbuscarauto;
     private javax.swing.JButton btnbuscarempleado;
     private javax.swing.JButton btnbuscarservicio;
+    private com.toedter.calendar.JDateChooser dtchFin;
+    private com.toedter.calendar.JDateChooser dtchInicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblIDEmpleado;
     private javax.swing.JLabel lblIDServicio;
     private javax.swing.JLabel lblID_Auto;
+    private javax.swing.JLabel lblMonto;
+    public javax.swing.JLabel lbltipo;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID_Auto;
     private javax.swing.JTextField txtID_Empleado;
     private javax.swing.JTextField txtID_Servicio;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

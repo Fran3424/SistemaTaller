@@ -70,7 +70,7 @@ public class DAEmpleados {
     
        public int Modificar(EntidadEmpleado empleado) throws SQLException {
         int resultado = 0;
-        String sentencia = "UPDATE Empleados SET Nombre=?,Apellido1=?,Apellido2=?,Telefono=?, WHERE Id_Empleado=?";
+        String sentencia = "UPDATE Empleados SET Nombre=?,Apellido1=?,Apellido2=?,Telefono=? WHERE Id_Empleado=?";
         try {
             PreparedStatement ps = _cnn.prepareStatement(sentencia);
             ps.setString(1, empleado.getNombre());

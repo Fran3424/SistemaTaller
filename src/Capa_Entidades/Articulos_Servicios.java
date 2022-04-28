@@ -13,7 +13,7 @@ public class Articulos_Servicios {
     private int id;
     private String nombre;
     private int precio;
-    private boolean existe;
+    private boolean existe=false;
 
     public boolean isExiste() {
         return existe;
@@ -53,15 +53,15 @@ public class Articulos_Servicios {
         this.id = 0;
         this.nombre = "";
         this.precio = 0;
-        this.existe=false;
+   
         
     }
 
-    public Articulos_Servicios(int id, String nombre, int precio,boolean existe) {
+    public Articulos_Servicios(int id, String nombre, int precio) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.existe=existe;
+     
         
     }
     

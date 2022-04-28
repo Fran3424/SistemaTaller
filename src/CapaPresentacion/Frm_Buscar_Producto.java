@@ -4,11 +4,9 @@
  */
 package CapaPresentacion;
 
-import CapaLogica.BLAuto;
-import CapaLogica.BLEmpleados;
+import CapaLogica.BLProductos;
 import CapaLogica.BLServicios;
-import Capa_Entidades.EntidadEmpleado;
-import Capa_Entidades.EntidadPersona;
+import Capa_Entidades.EntidadProducto;
 import Capa_Entidades.Entidad_Servicio;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,32 +16,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fran
  */
-public class Frm_Buscar_Servicios extends javax.swing.JDialog {
-        
-    /**
-     * Creates new form Frm_Buscar_Servicios
-     */
+public class Frm_Buscar_Producto extends javax.swing.JDialog {
 
-    
-    public Frm_Buscar_Servicios(java.awt.Frame parent, boolean modal) {
+    /**
+     * Creates new form Frm_Buscar_Producto
+     */
+    public Frm_Buscar_Producto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //Frm_Agenda_Reparacion frm_reparacion = parent.get();
         
-        this.setTitle("Buscar Servicios");
-        String tipo = lblTIpo.getText();
+        
+        this.setTitle("Buscar Productos");
+      
         this.setLocationRelativeTo(null);
-        
-        
-        
-    }
-    
-    public void  Cargar(String tipo){
-    try {      
-            CargarDatos("Tipo_vehiculo = "+"'"+tipo+"'");
+        try {
+            CargarDatos("");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
         }
+
+        
+        
+        
+        
+        
     }
 
     /**
@@ -55,17 +51,45 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProductos = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
+        lblTIpo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblServicios = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
-        lblTIpo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblProductos);
+
+        btnCancelar.setBackground(new java.awt.Color(204, 255, 204));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        lblTIpo.setText("tipo");
 
         jLabel1.setText("ID");
 
@@ -81,34 +105,6 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 btnBuscarActionPerformed(evt);
             }
         });
-
-        tblServicios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblServicios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblServiciosMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblServicios);
-
-        btnCancelar.setBackground(new java.awt.Color(204, 255, 204));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        lblTIpo.setText("tipo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +131,7 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(lblTIpo)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +147,7 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(lblTIpo)
                 .addGap(66, 66, 66))
         );
@@ -159,11 +155,22 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-      DefaultTableModel modelo = new DefaultTableModel();
-    
-   
-    
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        // TODO add your handling code here:
+        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
+        if (evt.getClickCount() == 2) {
+            int fila = tblProductos.rowAtPoint(evt.getPoint());
+            txtId.setText(tblProductos.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblProductos.getValueAt(fila, 1).toString());
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblProductosMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String condicion = "";
@@ -173,40 +180,33 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
             }
             CargarDatos(condicion);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
+         //   JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
-        // TODO add your handling code here:
-        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
-       if (evt.getClickCount() == 2) {
-            int fila = tblServicios.rowAtPoint(evt.getPoint());
-            txtId.setText(tblServicios.getValueAt(fila, 0).toString());
-            txtNombre.setText(tblServicios.getValueAt(fila, 1).toString());
-            this.dispose();
-        }
-    }//GEN-LAST:event_tblServiciosMouseClicked
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     
+      DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+      
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+        
     
       private void CargarDatos(String condicion) throws Exception {
-        BLServicios logica = new BLServicios();
-        List<Entidad_Servicio> lista;
+        BLProductos logica = new BLProductos();
+        List<EntidadProducto> lista;
         LimpiarTabla();
         Object[] fila = new Object[4];
         try {
-            lista = logica.ListarServicios(condicion);
-            for (Entidad_Servicio ser:lista) {
-                fila[0]=ser.getId();
-                fila[1]=ser.getNombre();
-                fila[2]=ser.getTipo_Vehiculo();
-                fila[3]=ser.getPrecio();
+            lista = logica.ListarProductos(condicion);
+            for (EntidadProducto pr:lista) {
+                fila[0]=pr.getId();
+                fila[1]=pr.getNombre();
+                fila[2]=pr.getCantidad();
+                fila[3]=pr.getPrecio();
                 modelo.addRow(fila);
             }
         } catch (Exception ex) {
@@ -237,17 +237,12 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 return false;
             }
         };     
-        tblServicios.setModel(modelo);
+        tblProductos.setModel(modelo);
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Tipo_Vehiculo");
+        modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");     
     }
-    
-    
-    
-    
-    
     
     
     
@@ -287,20 +282,20 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Producto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Producto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Producto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Producto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Frm_Buscar_Servicios dialog = new Frm_Buscar_Servicios(new javax.swing.JFrame(), true);
+                Frm_Buscar_Producto dialog = new Frm_Buscar_Producto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -319,7 +314,7 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JLabel lblTIpo;
-    private javax.swing.JTable tblServicios;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

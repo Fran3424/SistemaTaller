@@ -4,8 +4,7 @@
  */
 package Capa_Acceso_Datos;
 
-import Capa_Entidades.EntidadCliente;
-import Capa_Entidades.EntidadEmpleado;
+import Capa_Entidades.EntidadProducto;
 import Capa_Entidades.Entidad_Servicio;
 import Config.Config;
 import java.awt.Component;
@@ -22,19 +21,16 @@ import javax.swing.JOptionPane;
  *
  * @author Fran
  */
-public class DAServicios {
+public class DAProductos {
     
-    
-      private Connection _cnn;
-
+         private Connection _cnn;
 
     private String mensaje;
     public String getMensaje() {
         return mensaje;
     }
-    
 
-       public DAServicios() throws Exception{
+        public DAProductos() throws Exception{
         try {
             String url = Config.getConnectionString();
             _cnn = DriverManager.getConnection(url); //Clase de tipo interfaz
@@ -46,25 +42,26 @@ public class DAServicios {
     
     
     
-   
-  
-    public List<Entidad_Servicio> ListarServicios(String condicion) throws SQLException{
+    
+    
+    
+     public List<EntidadProducto> ListarProductos(String condicion) throws SQLException{
         ResultSet rs = null;
-        List<Entidad_Servicio> lista = new ArrayList();
+        List<EntidadProducto> lista = new ArrayList();
         try {
             Statement stm = _cnn.createStatement();
-            String sentencia = "Select Id_Servicio,Tipo_Vehiculo,Nombre,Precio from Servicios";
+            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio from Productos";
             if (!condicion.equals("")) {
                 sentencia = String.format("%s WHERE %s", sentencia, condicion);
             }
             rs = stm.executeQuery(sentencia);
             while(rs.next()){
-                lista.add(new Entidad_Servicio
-                                            (rs.getString("Tipo_Vehiculo"),
-                                             rs.getInt("Id_Servicio"),
+                lista.add(new EntidadProducto
+                                            (rs.getInt("Id_Producto"),
+                                             rs.getInt("Cantidad"),
                                              rs.getString("Nombre"),
                                              rs.getInt("Precio")
-                                            
+                                             
                 ));
             }
         } catch (Exception ex) {
@@ -78,19 +75,19 @@ public class DAServicios {
     
 
     
-      public Entidad_Servicio ObtenerUnServicio(String condicion) throws SQLException{
+      public EntidadProducto ObtenerUnProducto(String condicion) throws SQLException{
         ResultSet rs = null;
-        Entidad_Servicio servicio = new Entidad_Servicio();
+        EntidadProducto servicio = new EntidadProducto();
         try {
             Statement stm = _cnn.createStatement();
-            String sentencia = "Select Id_Servicio,Tipo_Vehiculo,Nombre,Precio from Servicios";
+            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio from Productos";
             if (!condicion.equals("")) {
                 sentencia = String.format("%s WHERE %s", sentencia, condicion);
             }
             rs = stm.executeQuery(sentencia);
             if (rs.next()) {
                 servicio.setId(rs.getInt(1));
-                servicio.setTipo_Vehiculo(rs.getString(2));
+                servicio.setCantidad(rs.getInt(2));
                 servicio.setNombre(rs.getString(3));
                 servicio.setPrecio(rs.getInt(4));
                 servicio.setExiste(true);
@@ -103,6 +100,13 @@ public class DAServicios {
         }
         return servicio;
     }
+    
+    
+    
+    
+    
+    
+    
     
     
     

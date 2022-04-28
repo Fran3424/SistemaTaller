@@ -257,16 +257,16 @@ public class Frm_Empleados extends javax.swing.JInternalFrame {
                 try {
                     int id = buscar.ObtenerId();
                     String condicion = "";
-                    BLClientes logica = new BLClientes();
-                    EntidadCliente cliente;
+                    BLEmpleados logica = new BLEmpleados();
+                    EntidadEmpleado empleado;
                     if (id > -1) {
-                        condicion = String.format("ID_CLIENTE=%d", id);
-                        cliente = logica.ObtenerUnCliente(condicion);
-                        txtId.setText(String.valueOf(cliente.getId()));
-                        txtNombre.setText(cliente.getNombre());
-                       txtTelefono.setText(String.valueOf(cliente.getTelefono()));
-                       txtApellido1.setText(cliente.getApellido1());
-                       txtApellido2.setText(cliente.getApellido2());
+                        condicion = String.format("Id_Empleado=%d", id);
+                        empleado = logica.ObtenerUnEmpleado(condicion);
+                        txtId.setText(String.valueOf(empleado.getId()));
+                        txtNombre.setText(empleado.getNombre());
+                       txtTelefono.setText(String.valueOf(empleado.getTelefono()));
+                       txtApellido1.setText(empleado.getApellido1());
+                       txtApellido2.setText(empleado.getApellido2());
                     }
                     else{
                         txtId.setText("");

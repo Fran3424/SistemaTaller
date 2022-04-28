@@ -14,13 +14,14 @@ public class EntidadProducto extends Articulos_Servicios {
     
     
     
-    public EntidadProducto(int cantidad, int id, String nombre, int precio, boolean existe) {
-        super(id, nombre, precio, existe);
+    public EntidadProducto(int cantidad, int id, String nombre, int precio) {
+        super(id, nombre, precio);
         this.cantidad = cantidad;
+        
     }
 
     public EntidadProducto() {
-        super(0, "", 0, false);
+        super(0, "", 0);
         this.cantidad=0;
     }
 

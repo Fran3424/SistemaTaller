@@ -92,6 +92,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuAuto.add(MnuProducto);
 
         MnuReparacion.setText("AgendarReparacion");
+        MnuReparacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuReparacionActionPerformed(evt);
+            }
+        });
         MnuAuto.add(MnuReparacion);
 
         MnuPago.setText("Pagos");
@@ -159,9 +164,50 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MnuAutomovilActionPerformed
 
     private void MnuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuProductoActionPerformed
-        // TODO add your handling code here:
+        Frm_Comprar_Producto Frm_Compras = new Frm_Comprar_Producto();
+        Escritorio.add(Frm_Compras);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Compras.getSize();
+        Frm_Compras.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+                        ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Compras.show(); 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_MnuProductoActionPerformed
 
+    private void MnuReparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuReparacionActionPerformed
+        Frm_Agenda_Reparacion Frm_Reparacion = new Frm_Agenda_Reparacion();
+        Escritorio.add(Frm_Reparacion);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Reparacion.getSize();
+        Frm_Reparacion.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+                        ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Reparacion.show(); 
+        
+        
+        
+        
+    }//GEN-LAST:event_MnuReparacionActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */

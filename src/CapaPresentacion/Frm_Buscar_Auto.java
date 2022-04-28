@@ -5,11 +5,7 @@
 package CapaPresentacion;
 
 import CapaLogica.BLAuto;
-import CapaLogica.BLEmpleados;
-import CapaLogica.BLServicios;
-import Capa_Entidades.EntidadEmpleado;
-import Capa_Entidades.EntidadPersona;
-import Capa_Entidades.Entidad_Servicio;
+import Capa_Entidades.EntidadAutomovil;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,32 +14,22 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fran
  */
-public class Frm_Buscar_Servicios extends javax.swing.JDialog {
-        
-    /**
-     * Creates new form Frm_Buscar_Servicios
-     */
+public class Frm_Buscar_Auto extends javax.swing.JDialog {
 
-    
-    public Frm_Buscar_Servicios(java.awt.Frame parent, boolean modal) {
+    /**
+     * Creates new form Frm_Buscar_Auto
+     */
+    public Frm_Buscar_Auto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //Frm_Agenda_Reparacion frm_reparacion = parent.get();
-        
-        this.setTitle("Buscar Servicios");
-        String tipo = lblTIpo.getText();
-        this.setLocationRelativeTo(null);
-        
-        
-        
-    }
-    
-    public void  Cargar(String tipo){
-    try {      
-            CargarDatos("Tipo_vehiculo = "+"'"+tipo+"'");
+             try {
+            CargarDatos("");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "ñaañañ");
         }
+        
+        
+        
     }
 
     /**
@@ -61,9 +47,8 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblServicios = new javax.swing.JTable();
+        tblAutos = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
-        lblTIpo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -82,7 +67,7 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
             }
         });
 
-        tblServicios.setModel(new javax.swing.table.DefaultTableModel(
+        tblAutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,12 +78,12 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblAutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblServiciosMouseClicked(evt);
+                tblAutosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblServicios);
+        jScrollPane1.setViewportView(tblAutos);
 
         btnCancelar.setBackground(new java.awt.Color(204, 255, 204));
         btnCancelar.setText("Cancelar");
@@ -108,34 +93,27 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
             }
         });
 
-        lblTIpo.setText("tipo");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCancelar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnBuscar)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(lblTIpo)))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnBuscar))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,19 +129,12 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(lblTIpo)
-                .addGap(66, 66, 66))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-      DefaultTableModel modelo = new DefaultTableModel();
-    
-   
-    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String condicion = "";
@@ -171,64 +142,59 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
             if (!txtNombre.getText().equals("")) {
                 condicion = "NOMBRE LIKE '%" + txtNombre.getText() + "%'";
             }
-            CargarDatos(condicion);
+           CargarDatos(condicion);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
-        // TODO add your handling code here:
-        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
-       if (evt.getClickCount() == 2) {
-            int fila = tblServicios.rowAtPoint(evt.getPoint());
-            txtId.setText(tblServicios.getValueAt(fila, 0).toString());
-            txtNombre.setText(tblServicios.getValueAt(fila, 1).toString());
-            this.dispose();
+    
+      DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+      
+        public boolean isCellEditable(int row, int column) {
+            return false;
         }
-    }//GEN-LAST:event_tblServiciosMouseClicked
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    };
 
     
     
-      private void CargarDatos(String condicion) throws Exception {
-        BLServicios logica = new BLServicios();
-        List<Entidad_Servicio> lista;
+      
+      
+      
+      
+        private void CargarDatos(String condicion) throws Exception {
+        BLAuto logica = new BLAuto();
+        List<EntidadAutomovil> lista;
         LimpiarTabla();
-        Object[] fila = new Object[4];
+        Object[] fila = new Object[6];
         try {
-            lista = logica.ListarServicios(condicion);
-            for (Entidad_Servicio ser:lista) {
-                fila[0]=ser.getId();
-                fila[1]=ser.getNombre();
-                fila[2]=ser.getTipo_Vehiculo();
-                fila[3]=ser.getPrecio();
+            lista = logica.ListarAutos(condicion);
+            for (EntidadAutomovil aut : lista) {
+                fila[0] = aut.getId();
+                fila[1] = aut.getId_cliente();
+                fila[2] = aut.getTipo_vehiculo();
+                fila[3] = aut.getMarca();
+                fila[4] = aut.getModelo();
+                fila[5] = aut.getPlaca();
                 modelo.addRow(fila);
             }
         } catch (Exception ex) {
              JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  
     
-      
-        public int ObtenerId() {
-        int id = -1;
-        if (!txtId.getText().equals("")) {
-            id = Integer.parseInt(txtId.getText());
-        }
-        return id;
-    }
-      
-      
-      
-      
-      
-      
-      
     
       private void LimpiarTabla(){
         modelo = new DefaultTableModel(){
@@ -237,39 +203,47 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 return false;
             }
         };     
-        tblServicios.setModel(modelo);
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Tipo_Vehiculo");
-        modelo.addColumn("Precio");     
+        tblAutos.setModel(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Id Cliente");
+        modelo.addColumn("Tipo vehiculo");
+        modelo.addColumn("Marca");
+        modelo.addColumn("Modelo");
+        modelo.addColumn("Placa");
+        
     }
     
     
     
     
+  public int ObtenerId() {
+        int id = -1;
+        if (!txtId.getText().equals("")) {
+            id = Integer.parseInt(txtId.getText());
+        }
+        return id;
+    }
+
+    
+   
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private void tblAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAutosMouseClicked
+        // TODO add your handling code here:
+        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
+        if (evt.getClickCount() == 2) {
+            int fila = tblAutos.rowAtPoint(evt.getPoint());
+            txtId.setText(tblAutos.getValueAt(fila, 0).toString());
+            txtNombre.setText(tblAutos.getValueAt(fila, 1).toString());
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblAutosMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,20 +261,20 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Servicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Frm_Buscar_Servicios dialog = new Frm_Buscar_Servicios(new javax.swing.JFrame(), true);
+                Frm_Buscar_Auto dialog = new Frm_Buscar_Auto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -318,8 +292,7 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JLabel lblTIpo;
-    private javax.swing.JTable tblServicios;
+    private javax.swing.JTable tblAutos;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
