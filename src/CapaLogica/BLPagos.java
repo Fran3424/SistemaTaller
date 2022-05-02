@@ -6,10 +6,10 @@ package CapaLogica;
 
 import Capa_Acceso_Datos.DAClientes;
 import Capa_Acceso_Datos.DACompras;
-import Capa_Acceso_Datos.DAReparaciones;
+import Capa_Acceso_Datos.DAPagos;
 import Capa_Entidades.EntidadCliente;
 import Capa_Entidades.EntidadCompraProducto;
-import Capa_Entidades.EntidadReparaciones;
+import Capa_Entidades.EntidadPagos;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,22 +19,40 @@ import javax.swing.JOptionPane;
  *
  * @author Fran
  */
-public class BLCompras {
-              private String mensaje;
-              
-                  
+public class BLPagos {
+    
+          private String mensaje;
+    
+    
      public String getMensaje() {
         return mensaje;
     }
      
+    
+    
        //Llamar al método insertar de la lógica
-    public int Insertar(EntidadCompraProducto orden) throws Exception{
+    public int RealizarPago(EntidadPagos pago) throws Exception{
         int resultado = -1;
-        DACompras daCompra;
+        DAPagos daPago;
         try {
-           daCompra = new DACompras();
-           resultado = daCompra.Insertar(orden);
-           mensaje = daCompra.getMensaje();
+           daPago = new DAPagos();
+           resultado = daPago.RealizarPago(pago);
+           mensaje = daPago.getMensaje();
+        } catch (Exception ex) {
+            Component parentComponent = null;
+            JOptionPane.showMessageDialog(parentComponent,ex);
+        }
+        return resultado;
+    }
+    
+    
+     public int AbonarPago(EntidadPagos pago, int montopagado) throws Exception{
+        int resultado = -1;
+        DAPagos daPago;
+        try {
+           daPago = new DAPagos();
+           resultado = daPago.AbonarPago(pago,montopagado);
+           mensaje = daPago.getMensaje();
         } catch (Exception ex) {
             Component parentComponent = null;
             JOptionPane.showMessageDialog(parentComponent,ex);
@@ -44,46 +62,14 @@ public class BLCompras {
     
     
     
-     public int EliminarCompra(EntidadCompraProducto orden) throws Exception{
-        int resultado = -1;
-        DACompras daCompra;
+
+    
+    public EntidadPagos ObtenerUnPago(String condicion) throws Exception{
+        EntidadPagos resultado;
+        DAPagos daPago;
         try {
-           daCompra = new DACompras();
-           resultado = daCompra.EliminarCompra(orden);
-           mensaje = daCompra.getMensaje();
-        } catch (Exception ex) {
-            Component parentComponent = null;
-            JOptionPane.showMessageDialog(parentComponent,ex);
-        }
-        return resultado;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-      public List<EntidadCompraProducto> ListarCompras(String condicion) throws Exception{
-        List<EntidadCompraProducto> clientes = new ArrayList();
-        DACompras daCompra;
-        try {
-            daCompra = new DACompras();
-            clientes = daCompra.ListarCompras(condicion);
-        } catch (Exception ex) {
-            throw ex;
-        }
-        return clientes;
-    }
-    
-    public EntidadCompraProducto ObtenerUnaCompra(String condicion) throws Exception{
-        EntidadCompraProducto resultado;
-        DACompras daCompra;
-        try {
-            daCompra = new DACompras();
-            resultado = daCompra.ObtenerUnaCompra(condicion);
+            daPago = new DAPagos();
+            resultado = daPago.ObtenerUnPago(condicion);
             if (resultado.isExiste()) {
                 mensaje = "Cliente encontrado!";
             }
@@ -99,11 +85,17 @@ public class BLCompras {
      
      
     
-    
-    
-    
-    
-    
+        public List<EntidadPagos> ListarPagos(String condicion) throws Exception{
+        List<EntidadPagos> pagos = new ArrayList();
+        DAPagos daPago;
+        try {
+            daPago = new DAPagos();
+            pagos = daPago.ListarPagos(condicion);
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return pagos;
+    }
     
     
     

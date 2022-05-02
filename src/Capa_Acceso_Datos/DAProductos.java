@@ -5,11 +5,11 @@
 package Capa_Acceso_Datos;
 
 import Capa_Entidades.EntidadProducto;
-import Capa_Entidades.Entidad_Servicio;
 import Config.Config;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -50,7 +50,7 @@ public class DAProductos {
         List<EntidadProducto> lista = new ArrayList();
         try {
             Statement stm = _cnn.createStatement();
-            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio from Productos";
+            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio,Descripcion from Productos";
             if (!condicion.equals("")) {
                 sentencia = String.format("%s WHERE %s", sentencia, condicion);
             }
@@ -60,8 +60,8 @@ public class DAProductos {
                                             (rs.getInt("Id_Producto"),
                                              rs.getInt("Cantidad"),
                                              rs.getString("Nombre"),
-                                             rs.getInt("Precio")
-                                             
+                                             rs.getInt("Precio"),
+                                             rs.getString("Descripcion")
                 ));
             }
         } catch (Exception ex) {
@@ -77,20 +77,21 @@ public class DAProductos {
     
       public EntidadProducto ObtenerUnProducto(String condicion) throws SQLException{
         ResultSet rs = null;
-        EntidadProducto servicio = new EntidadProducto();
+        EntidadProducto producto = new EntidadProducto();
         try {
             Statement stm = _cnn.createStatement();
-            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio from Productos";
+            String sentencia = "Select Id_Producto,Cantidad,Nombre,Precio,Descripcion from Productos";
             if (!condicion.equals("")) {
                 sentencia = String.format("%s WHERE %s", sentencia, condicion);
             }
             rs = stm.executeQuery(sentencia);
             if (rs.next()) {
-                servicio.setId(rs.getInt(1));
-                servicio.setCantidad(rs.getInt(2));
-                servicio.setNombre(rs.getString(3));
-                servicio.setPrecio(rs.getInt(4));
-                servicio.setExiste(true);
+                producto.setId(rs.getInt(1));
+                producto.setCantidad(rs.getInt(2));
+                producto.setNombre(rs.getString(3));
+                producto.setPrecio(rs.getInt(4));
+                producto.setDescripcion(rs.getString(5));
+                producto.setExiste(true);
             }
 
         } catch (Exception ex) {
@@ -98,13 +99,81 @@ public class DAProductos {
         } finally {
             _cnn = null;
         }
-        return servicio;
+        return producto;
     }
     
     
     
     
+       public int Insertar(EntidadProducto producto) throws SQLException {
+        int id_empleado = -1;
+        String sentencia = "INSERT INTO Productos(Nombre,Precio,Cantidad,Descripcion) VALUES(?,?,?,?) ";
+        try {
+            PreparedStatement ps = _cnn.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, producto.getNombre());
+            ps.setInt(2, producto.getPrecio());
+            ps.setInt(3, producto.getCantidad());
+            ps.setString(4, producto.getDescripcion());
+            ps.execute();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs != null && rs.next()) {
+                id_empleado = rs.getInt(1);
+                mensaje = "Producto ingresado satisfactoriamente";
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            _cnn = null;
+        }
+        return id_empleado;
+    }
     
+    
+    
+       public int Modificar(EntidadProducto producto) throws SQLException {
+        int resultado = 0;
+        String sentencia = "UPDATE Productos SET Nombre=?,Precio=?,Cantidad=?,Descripcion=? WHERE Id_Producto=?";
+        try {
+            PreparedStatement ps = _cnn.prepareStatement(sentencia);
+            ps.setString(1, producto.getNombre());
+            ps.setInt(2, producto.getPrecio());
+            ps.setInt(3, producto.getCantidad());
+            ps.setString(4, producto.getDescripcion());
+            ps.setInt(5, producto.getId());
+            
+            resultado = ps.executeUpdate();
+            if (resultado > 0) {
+               mensaje = "Producto modificado!"; 
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            _cnn = null;
+        }
+        return resultado;
+
+    }
+    
+    
+    public int Eliminar(EntidadProducto producto) throws SQLException {
+        int resultado = 0;
+        String sentencia = "DELETE FROM Productos WHERE Id_Producto=?";
+        try {
+            PreparedStatement ps = _cnn.prepareStatement(sentencia);
+            ps.setInt(1, producto.getId());       
+            resultado = ps.executeUpdate();
+            if (resultado > 0) {
+               mensaje = "Producto eliminado!"; 
+            }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            _cnn = null;
+        }
+        return resultado;
+
+    }
     
     
     

@@ -164,6 +164,21 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
     
    
     
+    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
+        // TODO add your handling code here:
+        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
+       if (evt.getClickCount() == 2) {
+            int fila = tblServicios.rowAtPoint(evt.getPoint());
+            txtId.setText(tblServicios.getValueAt(fila, 0).toString());
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblServiciosMouseClicked
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String condicion = "";
@@ -176,22 +191,6 @@ public class Frm_Buscar_Servicios extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void tblServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblServiciosMouseClicked
-        // TODO add your handling code here:
-        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
-       if (evt.getClickCount() == 2) {
-            int fila = tblServicios.rowAtPoint(evt.getPoint());
-            txtId.setText(tblServicios.getValueAt(fila, 0).toString());
-            txtNombre.setText(tblServicios.getValueAt(fila, 1).toString());
-            this.dispose();
-        }
-    }//GEN-LAST:event_tblServiciosMouseClicked
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
 
     
     

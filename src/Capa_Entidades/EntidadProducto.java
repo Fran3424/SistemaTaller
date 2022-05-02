@@ -11,12 +11,15 @@ package Capa_Entidades;
 public class EntidadProducto extends Articulos_Servicios {
 
      private int cantidad;
+     private String descripcion;
+
     
     
     
-    public EntidadProducto(int cantidad, int id, String nombre, int precio) {
+    public EntidadProducto(int id,int cantidad, String nombre, int precio,String descripcion) {
         super(id, nombre, precio);
         this.cantidad = cantidad;
+        this.descripcion=descripcion;
         
     }
 
@@ -36,6 +39,14 @@ public class EntidadProducto extends Articulos_Servicios {
         this.cantidad = cantidad;
     }
    
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
     
     

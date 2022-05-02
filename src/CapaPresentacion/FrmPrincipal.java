@@ -37,7 +37,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuProducto = new javax.swing.JMenuItem();
         MnuReparacion = new javax.swing.JMenuItem();
         MnuPago = new javax.swing.JMenuItem();
+        mnuPagarMontos = new javax.swing.JMenuItem();
         MnuFactura = new javax.swing.JMenuItem();
+        MnuListarFacturas = new javax.swing.JMenuItem();
+        mnuProductos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,10 +103,44 @@ public class FrmPrincipal extends javax.swing.JFrame {
         MnuAuto.add(MnuReparacion);
 
         MnuPago.setText("Pagos");
+        MnuPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuPagoActionPerformed(evt);
+            }
+        });
         MnuAuto.add(MnuPago);
 
+        mnuPagarMontos.setText("Pagar montos pendientes");
+        mnuPagarMontos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuPagarMontosActionPerformed(evt);
+            }
+        });
+        MnuAuto.add(mnuPagarMontos);
+
         MnuFactura.setText("GenerarFactura");
+        MnuFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuFacturaActionPerformed(evt);
+            }
+        });
         MnuAuto.add(MnuFactura);
+
+        MnuListarFacturas.setText("ListarFacturas");
+        MnuListarFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnuListarFacturasActionPerformed(evt);
+            }
+        });
+        MnuAuto.add(MnuListarFacturas);
+
+        mnuProductos.setText("Productos");
+        mnuProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuProductosActionPerformed(evt);
+            }
+        });
+        MnuAuto.add(mnuProductos);
 
         MnuPrincipal.add(MnuAuto);
 
@@ -205,6 +242,104 @@ public class FrmPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_MnuReparacionActionPerformed
 
+    private void MnuPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuPagoActionPerformed
+        // TODO add your handling code here:
+        
+        Frm_Transaccion Frm_Transaccion = new Frm_Transaccion();
+        Escritorio.add(Frm_Transaccion);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Transaccion.getSize();
+        Frm_Transaccion.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+                        ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Transaccion.show(); 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_MnuPagoActionPerformed
+
+    private void mnuPagarMontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPagarMontosActionPerformed
+       
+         Frm_Realizar_Pagos Frm_Pagar_Pendientes = new Frm_Realizar_Pagos();
+        Escritorio.add(Frm_Pagar_Pendientes);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Pagar_Pendientes.getSize();
+        Frm_Pagar_Pendientes.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+       ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Pagar_Pendientes.show(); 
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_mnuPagarMontosActionPerformed
+
+    private void MnuFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuFacturaActionPerformed
+        
+        Frm_Generar_Factura Frm_Facturas = new Frm_Generar_Factura();
+        Escritorio.add(Frm_Facturas);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Facturas.getSize();
+        Frm_Facturas.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+       ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Facturas.show(); 
+        
+        
+        
+        
+        
+  
+    }//GEN-LAST:event_MnuFacturaActionPerformed
+
+    private void MnuListarFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnuListarFacturasActionPerformed
+         Frm_Listar_Facturas Frm_Facturas = new Frm_Listar_Facturas();
+        Escritorio.add(Frm_Facturas);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Facturas.getSize();
+        Frm_Facturas.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+       ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Facturas.show(); 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_MnuListarFacturasActionPerformed
+
+    private void mnuProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuProductosActionPerformed
+       Frm_Productos Frm_Productos = new Frm_Productos();
+        Escritorio.add(Frm_Productos);
+        Dimension sizeContenedor = Escritorio.getSize();
+        Dimension sizeFrm = Frm_Productos.getSize();
+        Frm_Productos.setLocation((((int) sizeContenedor.getWidth() - (int) sizeFrm.getWidth()) / 2),
+       ((int) sizeContenedor.getHeight() - (int) sizeFrm.getHeight()) / 2);
+        Frm_Productos.show(); 
+        
+        
+    }//GEN-LAST:event_mnuProductosActionPerformed
+
     
     
     
@@ -250,9 +385,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MnuCliente;
     private javax.swing.JMenuItem MnuEmpleado;
     private javax.swing.JMenuItem MnuFactura;
+    private javax.swing.JMenuItem MnuListarFacturas;
     private javax.swing.JMenuItem MnuPago;
     private javax.swing.JMenuBar MnuPrincipal;
     private javax.swing.JMenuItem MnuProducto;
     private javax.swing.JMenuItem MnuReparacion;
+    private javax.swing.JMenuItem mnuPagarMontos;
+    private javax.swing.JMenuItem mnuProductos;
     // End of variables declaration//GEN-END:variables
 }

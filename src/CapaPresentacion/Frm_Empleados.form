@@ -26,30 +26,10 @@
                       <Component id="btnInsertar" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Component id="btnElliminar" min="-2" pref="89" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="btnActualizar" min="-2" pref="88" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
                       <Component id="btnBuscar" min="-2" pref="92" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="btnLimpiar" min="-2" pref="93" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblApellido2" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblApellido1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNombre" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="LblID" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtId" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtApellido1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtApellido2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtTelefono" alignment="0" pref="162" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -58,17 +38,42 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblApellido2" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblApellido1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="LblID" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtId" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtApellido1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtApellido2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtTelefono" alignment="0" pref="162" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="579" max="32767" attributes="0"/>
+              <Component id="btnSalir" min="-2" pref="118" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="LblID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="btnSalir" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -92,7 +97,6 @@
               <Component id="jScrollPane1" min="-2" pref="218" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnActualizar" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="btnBuscar" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="btnInsertar" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                   <Component id="btnLimpiar" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
@@ -136,11 +140,6 @@
     <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnActualizar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Actualizar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblApellido1">
@@ -202,6 +201,14 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSalir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

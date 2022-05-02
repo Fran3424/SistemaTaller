@@ -4,9 +4,13 @@
  */
 package CapaPresentacion;
 
-import CapaLogica.BLAuto;
-import Capa_Entidades.EntidadAutomovil;
+import CapaLogica.BLCompras;
+import CapaLogica.BLProductos;
+import Capa_Entidades.EntidadCompraProducto;
+import Capa_Entidades.EntidadProducto;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,22 +18,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fran
  */
-public class Frm_Buscar_Auto extends javax.swing.JDialog {
+public class Frm_Buscar_Orden_Compra extends javax.swing.JDialog {
 
     /**
-     * Creates new form Frm_Buscar_Auto
+     * Creates new form Frm_Buscar_Orden_Compra
      */
-    public Frm_Buscar_Auto(java.awt.Frame parent, boolean modal) {
+    public Frm_Buscar_Orden_Compra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-             try {
+        try {
             CargarDatos("");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, "ñaañañ");
+            Logger.getLogger(Frm_Buscar_Orden_Compra.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
 
     /**
@@ -41,19 +42,15 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProductos = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAutos = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("ID");
-
-        txtId.setEnabled(false);
-
-        tblAutos.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -64,12 +61,12 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblAutos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblAutosMouseClicked(evt);
+                tblProductosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblAutos);
+        jScrollPane1.setViewportView(tblProductos);
 
         btnCancelar.setBackground(new java.awt.Color(204, 255, 204));
         btnCancelar.setText("Cancelar");
@@ -79,12 +76,16 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setText("ID");
+
+        txtId.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCancelar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,12 +94,12 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -106,14 +107,25 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
+        // TODO add your handling code here:
+        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
+        if (evt.getClickCount() == 2) {
+            int fila = tblProductos.rowAtPoint(evt.getPoint());
+            txtId.setText(tblProductos.getValueAt(fila, 0).toString());
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblProductosMouseClicked
+
     
-      DefaultTableModel modelo = new DefaultTableModel() {
+    
+          DefaultTableModel modelo = new DefaultTableModel() {
         @Override
       
         public boolean isCellEditable(int row, int column) {
@@ -121,31 +133,35 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
         }
     };
 
+        
     
-    
-      
-      
-      
-      
-        private void CargarDatos(String condicion) throws Exception {
-        BLAuto logica = new BLAuto();
-        List<EntidadAutomovil> lista;
+      private void CargarDatos(String condicion) throws Exception {
+        BLCompras logica = new BLCompras();
+        List<EntidadCompraProducto> lista;
         LimpiarTabla();
-        Object[] fila = new Object[6];
+        Object[] fila = new Object[5];
         try {
-            lista = logica.ListarAutos(condicion);
-            for (EntidadAutomovil aut : lista) {
-                fila[0] = aut.getId();
-                fila[1] = aut.getId_cliente();
-                fila[2] = aut.getTipo_vehiculo();
-                fila[3] = aut.getMarca();
-                fila[4] = aut.getModelo();
-                fila[5] = aut.getPlaca();
+            lista = logica.ListarCompras(condicion);
+            for (EntidadCompraProducto cpr:lista) {
+                fila[0]=cpr.getId_Compra();
+                fila[1]=cpr.getId_Empleado();
+                fila[2]=cpr.getId_Producto();
+                fila[3]=cpr.getMonto();
+                fila[4]=cpr.getCantidad();
                 modelo.addRow(fila);
             }
         } catch (Exception ex) {
              JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+    }
+    
+      
+        public int ObtenerId() {
+        int id = -1;
+        if (!txtId.getText().equals("")) {
+            id = Integer.parseInt(txtId.getText());
+        }
+        return id;
     }
       
       
@@ -154,11 +170,6 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
       
       
       
-      
-      
-      
-  
-    
     
       private void LimpiarTabla(){
         modelo = new DefaultTableModel(){
@@ -167,41 +178,45 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
                 return false;
             }
         };     
-        tblAutos.setModel(modelo);
-        modelo.addColumn("Id");
-        modelo.addColumn("Id Cliente");
-        modelo.addColumn("Tipo vehiculo");
-        modelo.addColumn("Marca");
-        modelo.addColumn("Modelo");
-        modelo.addColumn("Placa");
-        
+        tblProductos.setModel(modelo);
+        modelo.addColumn("ID compra");
+        modelo.addColumn("ID Empleado");
+        modelo.addColumn("ID Producto");
+        modelo.addColumn("Monto"); 
+        modelo.addColumn("Cantidad"); 
     }
     
     
     
     
-  public int ObtenerId() {
-        int id = -1;
-        if (!txtId.getText().equals("")) {
-            id = Integer.parseInt(txtId.getText());
-        }
-        return id;
-    }
-
-    
-   
     
     
-    private void tblAutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAutosMouseClicked
-        // TODO add your handling code here:
-        //OBTIENE ID CUANDO SE CIERRA LA VENTANA
-        if (evt.getClickCount() == 2) {
-            int fila = tblAutos.rowAtPoint(evt.getPoint());
-            txtId.setText(tblAutos.getValueAt(fila, 0).toString());
-            this.dispose();
-        }
-    }//GEN-LAST:event_tblAutosMouseClicked
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -224,20 +239,20 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Orden_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Orden_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Orden_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_Buscar_Auto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_Buscar_Orden_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Frm_Buscar_Auto dialog = new Frm_Buscar_Auto(new javax.swing.JFrame(), true);
+                Frm_Buscar_Orden_Compra dialog = new Frm_Buscar_Orden_Compra(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -253,7 +268,7 @@ public class Frm_Buscar_Auto extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblAutos;
+    private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

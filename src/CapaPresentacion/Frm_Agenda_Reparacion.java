@@ -59,10 +59,10 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
         FechaFin = new javax.swing.JLabel();
         lblMonto = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
-        lbltipo = new javax.swing.JLabel();
         btnAgendar = new javax.swing.JButton();
         dtchFin = new com.toedter.calendar.JDateChooser();
         dtchInicio = new com.toedter.calendar.JDateChooser();
+        btnSalir = new javax.swing.JButton();
 
         lblIDServicio.setText("ID_Servicio");
 
@@ -113,12 +113,17 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
 
         txtMonto.setEditable(false);
 
-        lbltipo.setText("tipo");
-
         btnAgendar.setText("Agendar");
         btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -131,9 +136,7 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgendar)
-                        .addGap(259, 259, 259)
-                        .addComponent(lbltipo)
-                        .addContainerGap(516, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -157,7 +160,7 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblID)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblID_Auto)
                                 .addGap(18, 18, 18)
@@ -168,7 +171,7 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                                 .addComponent(lblMonto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 627, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +182,10 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                     .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FechaFin))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,9 +219,7 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                     .addComponent(lblMonto)
                     .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltipo)
-                    .addComponent(btnAgendar))
+                .addComponent(btnAgendar)
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -223,7 +228,9 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dtchFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dtchInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -322,7 +329,6 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
                         condicion = String.format("Id_Automovil=%d", id);
                         auto = logica.ObtenerUnAuto(condicion);
                         txtID_Auto.setText(String.valueOf(auto.getId()));
-                         lbltipo.setText(String.valueOf(auto.getTipo_vehiculo()));
                          Txttipovehiculo.setText(String.valueOf(auto.getTipo_vehiculo()));
                     }
                     else{
@@ -371,6 +377,10 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_btnAgendarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     
     public String getTipoVehiculo(){
@@ -438,6 +448,7 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel FechaFin;
     public javax.swing.JTextField Txttipovehiculo;
     private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnbuscarauto;
     private javax.swing.JButton btnbuscarempleado;
     private javax.swing.JButton btnbuscarservicio;
@@ -450,7 +461,6 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblIDServicio;
     private javax.swing.JLabel lblID_Auto;
     private javax.swing.JLabel lblMonto;
-    public javax.swing.JLabel lbltipo;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtID_Auto;
     private javax.swing.JTextField txtID_Empleado;

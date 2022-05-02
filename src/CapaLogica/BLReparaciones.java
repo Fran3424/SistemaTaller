@@ -9,6 +9,8 @@ import Capa_Acceso_Datos.DAReparaciones;
 import Capa_Entidades.EntidadCliente;
 import Capa_Entidades.EntidadReparaciones;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,9 +44,38 @@ public class BLReparaciones {
     
     
     
+        public List<EntidadReparaciones> ListarReparaciones(String condicion) throws Exception{
+        List<EntidadReparaciones> clientes = new ArrayList();
+        DAReparaciones daReparacion;
+        try {
+            daReparacion = new DAReparaciones();
+            clientes = daReparacion.ListarReparaciones(condicion);
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return clientes;
+    }
     
     
-    
+        
+       public EntidadReparaciones ObtenerUnaReparacion(String condicion) throws Exception{
+        EntidadReparaciones resultado;
+        DAReparaciones daReparacion;
+        try {
+            daReparacion = new DAReparaciones();
+            resultado = daReparacion.ObtenerUnaReparacion(condicion);
+            if (resultado.isExiste()) {
+                mensaje = "Cliente encontrado!";
+            }
+            else{
+                mensaje = "Cliente NO encontrado";
+            }
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return resultado;
+    }
+     
     
     
     

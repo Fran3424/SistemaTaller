@@ -15,6 +15,7 @@ public class EntidadCompraProducto {
     private int Cantidad;
     private String descripcion;
     private boolean existe=false;
+    private int Monto;
 
     public int getId_Compra() {
         return Id_Compra;
@@ -63,16 +64,25 @@ public class EntidadCompraProducto {
     public void setExiste(boolean existe) {
         this.existe = existe;
     }
+
+    public int getMonto() {
+        return Monto;
+    }
+
+    public void setMonto(int Monto) {
+        this.Monto = Monto;
+    }
     
     
     
 
-    public EntidadCompraProducto(int Id_Compra, int Id_Producto, int Id_Empleado, int Cantidad, String descripcion) {
+    public EntidadCompraProducto(int Id_Compra, int Id_Producto, int Id_Empleado, int Cantidad, String descripcion,int monto) {
         this.Id_Compra = Id_Compra;
         this.Id_Producto = Id_Producto;
         this.Id_Empleado = Id_Empleado;
         this.Cantidad = Cantidad;
         this.descripcion = descripcion;
+        this.Monto=monto;
     }
 
     public EntidadCompraProducto() {
@@ -81,7 +91,7 @@ public class EntidadCompraProducto {
         this.Id_Empleado = 0;
         this.Cantidad = 0;
         this.descripcion = "";
-             
+       this.Monto = 0;    
     }
     
     
