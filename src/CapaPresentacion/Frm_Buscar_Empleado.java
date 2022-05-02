@@ -106,7 +106,7 @@ public class Frm_Buscar_Empleado extends javax.swing.JDialog {
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnBuscar))))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

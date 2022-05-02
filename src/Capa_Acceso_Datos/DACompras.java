@@ -159,11 +159,11 @@ public class DACompras {
             
         
             if(resultado==0){
-            mensaje="No se pudo hacer la orden de compra debido a que no hay suficiente cantidad del producto";
-                 
+            mensaje="Orden de compra eliminada correctamente";
+
             }
             else{
-            mensaje="Orden registrada con exito se debera pagar esta orden para poder emitir una factura";
+            mensaje="No es posible eliminar la orden de compra";
            
             
             }

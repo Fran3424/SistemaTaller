@@ -5,20 +5,16 @@
 package CapaPresentacion;
 
 import CapaLogica.BLAuto;
-import CapaLogica.BLClientes;
 import CapaLogica.BLEmpleados;
 import CapaLogica.BLReparaciones;
 import CapaLogica.BLServicios;
 import Capa_Entidades.EntidadAutomovil;
-import Capa_Entidades.EntidadCliente;
 import Capa_Entidades.EntidadEmpleado;
 import Capa_Entidades.EntidadReparaciones;
 import Capa_Entidades.Entidad_Servicio;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import java.text.SimpleDateFormat;
 
 /**
  *
@@ -352,13 +348,12 @@ public class Frm_Agenda_Reparacion extends javax.swing.JInternalFrame {
         EntidadReparaciones reparacion = GenerarEntidad();
         try {
             if (reparacion.isExiste()) {
-                //logica.Modificar(reparacion);
+             
             }
             else{
                 logica.Insertar(reparacion);
             }
-         //   Limpiar();
-          //  CargarDatos("");
+
             JOptionPane.showMessageDialog(this, logica.getMensaje());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());

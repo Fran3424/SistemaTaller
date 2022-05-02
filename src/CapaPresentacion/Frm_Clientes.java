@@ -156,6 +156,7 @@ public class Frm_Clientes extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblClientes);
 
+        btnSalir.setBackground(new java.awt.Color(255, 51, 51));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

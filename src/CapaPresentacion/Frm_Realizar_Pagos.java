@@ -144,7 +144,7 @@ public class Frm_Realizar_Pagos extends javax.swing.JInternalFrame {
         int montopagado=Integer.parseInt(txtAbonar.getText());
         try {
             logica.AbonarPago(pago, montopagado);
-            
+              CargarDatos("");
              JOptionPane.showMessageDialog(this, logica.getMensaje());
             
        } catch (Exception ex) {

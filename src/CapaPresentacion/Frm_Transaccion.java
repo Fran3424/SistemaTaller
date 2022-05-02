@@ -252,16 +252,18 @@ public class Frm_Transaccion extends javax.swing.JInternalFrame {
            montoReparacion=Integer.parseInt(txtMontoReparacion.getText());
             montoCompra=Integer.parseInt(txtMontoCompra.getText());    
             monto=montoCompra+montoReparacion;
-            pago.setMonto(monto);
-          }
-        
-        
-        try {
+            pago.setMonto(monto);   
+             try {
              logica.RealizarPago(pago);
             JOptionPane.showMessageDialog(this, logica.getMensaje());
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
+            JOptionPane.showMessageDialog(this,"Faltan datos" );
         }
+            
+          }
+        
+        
+       
         
         
    

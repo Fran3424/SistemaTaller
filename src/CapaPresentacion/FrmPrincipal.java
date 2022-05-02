@@ -5,6 +5,9 @@
 package CapaPresentacion;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -28,7 +31,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/mecanico-automoviles-asiatico-taller-reparacion-automoviles-revisando-motor-clientes-que-usan-automoviles-servicios-reparacion-mecanico-trabajara-garaje_140555-248.jpg"));
+        Image image = icon.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){ g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        ;
+        jPanel1 = new javax.swing.JPanel();
         MnuPrincipal = new javax.swing.JMenuBar();
         MnuAuto = new javax.swing.JMenu();
         MnuCliente = new javax.swing.JMenuItem();
@@ -43,16 +53,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuProductos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
+
+        Escritorio.setPreferredSize(new java.awt.Dimension(1920, 1080));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 973, Short.MAX_VALUE)
+            .addGroup(EscritorioLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE)
+                .addGap(964, 964, 964))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
+            .addGroup(EscritorioLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1080, Short.MAX_VALUE))
         );
 
         MnuAuto.setText("Menu");
@@ -62,6 +83,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        MnuCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/team.png"))); // NOI18N
         MnuCliente.setText("Clientes");
         MnuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +92,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuCliente);
 
+        MnuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/worker.png"))); // NOI18N
         MnuEmpleado.setText("Empleados");
         MnuEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +101,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuEmpleado);
 
+        MnuAutomovil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mechanical.png"))); // NOI18N
         MnuAutomovil.setText("Automoviles");
         MnuAutomovil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +110,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuAutomovil);
 
+        MnuProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cargo.png"))); // NOI18N
         MnuProducto.setText("CompraProducto");
         MnuProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +119,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuProducto);
 
+        MnuReparacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mechanic.png"))); // NOI18N
         MnuReparacion.setText("AgendarReparacion");
         MnuReparacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +128,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuReparacion);
 
-        MnuPago.setText("Pagos");
+        MnuPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-dinero-de-yandex-32.png"))); // NOI18N
+        MnuPago.setText("AsignarPagos");
         MnuPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnuPagoActionPerformed(evt);
@@ -110,6 +137,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuPago);
 
+        mnuPagarMontos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-tarjeta-en-uso-32.png"))); // NOI18N
         mnuPagarMontos.setText("Pagar montos pendientes");
         mnuPagarMontos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +146,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(mnuPagarMontos);
 
+        MnuFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-invoices-32.png"))); // NOI18N
         MnuFactura.setText("GenerarFactura");
         MnuFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +155,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuFactura);
 
+        MnuListarFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-lista-de-verificación-32.png"))); // NOI18N
         MnuListarFacturas.setText("ListarFacturas");
         MnuListarFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +164,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         MnuAuto.add(MnuListarFacturas);
 
+        mnuProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-almacén-32.png"))); // NOI18N
         mnuProductos.setText("Productos");
         mnuProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,14 +183,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Escritorio)
-                .addContainerGap())
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Escritorio)
-                .addContainerGap())
+                .addComponent(Escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -390,6 +421,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar MnuPrincipal;
     private javax.swing.JMenuItem MnuProducto;
     private javax.swing.JMenuItem MnuReparacion;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnuPagarMontos;
     private javax.swing.JMenuItem mnuProductos;
     // End of variables declaration//GEN-END:variables
